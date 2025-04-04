@@ -10,6 +10,11 @@ type MarsRover struct {
 	orientation nav.Orientation
 }
 
+type IsRover interface {
+	TurnLeft()
+	TurnRight()
+}
+
 func NewMarsRover() *MarsRover {
 	return &MarsRover{
 		orientation: nav.North{},
@@ -20,9 +25,9 @@ func (m *MarsRover) Execute(commandString string) (string, error) {
 	command_runes := []rune(commandString)
 	for i := range command_runes {
 		if command_runes[i] == 'L' {
-			m.turnLeft()
+			m.TurnLeft()
 		} else if command_runes[i] == 'R' {
-			m.turnRight()
+			m.TurnRight()
 		} else {
 			return "", errors.New("invalid command")
 		}
@@ -30,10 +35,10 @@ func (m *MarsRover) Execute(commandString string) (string, error) {
 	return fmt.Sprintf("0:0:%s", m.orientation), nil
 }
 
-func (m *MarsRover) turnLeft() {
+func (m *MarsRover) TurnLeft() {
 	m.orientation = m.orientation.Left()
 }
 
-func (m *MarsRover) turnRight() {
+func (m *MarsRover) TurnRight() {
 	m.orientation = m.orientation.Right()
 }
