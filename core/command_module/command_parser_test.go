@@ -19,6 +19,7 @@ func NewMockRover(commandParser *commandmodule.CommandParser) *MockRover {
 func (m *MockRover) TurnLeft() {
 	m.CalledFuncs = append(m.CalledFuncs, "TurnLeft")
 }
+
 func (m *MockRover) TurnRight() {
 	m.CalledFuncs = append(m.CalledFuncs, "TurnRight")
 }
