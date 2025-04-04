@@ -28,4 +28,15 @@ func TestMarsRoverShould(t *testing.T) {
 			t.Errorf("expected position to be '%s', got '%s'", expected, position)
 		}
 	})
+	t.Run("return 0:0:S position after receiving 'LL'", func(t *testing.T) {
+		rover := models.NewMarsRover()
+
+		position := rover.Execute("LL")
+
+		expected := "0:0:S"
+
+		if position != expected {
+			t.Errorf("expected position to be '%s', got '%s'", expected, position)
+		}
+	})
 }
