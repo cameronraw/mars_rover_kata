@@ -7,23 +7,39 @@ import (
 type Orientation interface {
 	Left() Orientation
 	Right() Orientation
-	MoveForward(coordinates *Coordinates)
+	MoveForward(coordinates *Coordinates, grid *Grid)
 	fmt.Stringer
 }
 
-func (o *North) MoveForward(coordinates *Coordinates) {
+func (o *North) MoveForward(coordinates *Coordinates, grid *Grid) {
+	if coordinates.Y == len(grid.Tiles)-1 {
+		coordinates.Y = 0
+		return
+	}
 	coordinates.Y++
 }
 
-func (o *West) MoveForward(coordinates *Coordinates) {
+func (o *West) MoveForward(coordinates *Coordinates, grid *Grid) {
+	if coordinates.X == 0 {
+		coordinates.X = len(grid.Tiles[0]) - 1
+		return
+	}
 	coordinates.X--
 }
 
-func (o *East) MoveForward(coordinates *Coordinates) {
+func (o *East) MoveForward(coordinates *Coordinates, grid *Grid) {
+	if coordinates.X == len(grid.Tiles[0])-1 {
+		coordinates.X = 0
+		return
+	}
 	coordinates.X++
 }
 
-func (o *South) MoveForward(coordinates *Coordinates) {
+func (o *South) MoveForward(coordinates *Coordinates, grid *Grid) {
+	if coordinates.Y == 0 {
+		coordinates.Y = len(grid.Tiles) - 1
+		return
+	}
 	coordinates.Y--
 }
 

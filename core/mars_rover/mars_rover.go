@@ -8,13 +8,9 @@ import (
 )
 
 type MarsRover struct {
+	nav.Grid
 	orientation nav.Orientation
 	nav.Coordinates
-}
-
-type Position struct {
-	X int
-	Y int
 }
 
 type IsRover interface {
@@ -23,8 +19,9 @@ type IsRover interface {
 	MoveForward()
 }
 
-func NewMarsRover() *MarsRover {
+func NewMarsRover(grid nav.Grid) *MarsRover {
 	return &MarsRover{
+		Grid:        grid,
 		orientation: &nav.North{},
 		Coordinates: nav.Coordinates{X: 0, Y: 0},
 	}
@@ -56,5 +53,5 @@ func (m *MarsRover) TurnRight() {
 }
 
 func (m *MarsRover) MoveForward() {
-	m.orientation.MoveForward(&m.Coordinates)
+	m.orientation.MoveForward(&m.Coordinates, &m.Grid)
 }
