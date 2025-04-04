@@ -1,13 +1,12 @@
-package navigation_test
+package navigation
 
 import (
-	"github.com/cameronraw/mars_rover_kata/core/navigation"
 	"testing"
 )
 
 func TestNorthLeft(t *testing.T) {
-	orientation := navigation.North{}
-	expected := navigation.West{}
+	orientation := North{}
+	expected := &West{}
 	actual := orientation.Left()
 
 	if actual != expected {
@@ -16,8 +15,8 @@ func TestNorthLeft(t *testing.T) {
 }
 
 func TestNorthRight(t *testing.T) {
-	orientation := navigation.North{}
-	expected := navigation.East{}
+	orientation := North{}
+	expected := &East{}
 	actual := orientation.Right()
 
 	if actual != expected {
@@ -26,8 +25,8 @@ func TestNorthRight(t *testing.T) {
 }
 
 func TestEastLeft(t *testing.T) {
-	orientation := navigation.East{}
-	expected := navigation.North{}
+	orientation := East{}
+	expected := &North{}
 	actual := orientation.Left()
 
 	if actual != expected {
@@ -36,8 +35,8 @@ func TestEastLeft(t *testing.T) {
 }
 
 func TestEastRight(t *testing.T) {
-	orientation := navigation.East{}
-	expected := navigation.South{}
+	orientation := East{}
+	expected := &South{}
 	actual := orientation.Right()
 
 	if actual != expected {
@@ -46,8 +45,8 @@ func TestEastRight(t *testing.T) {
 }
 
 func TestSouthLeft(t *testing.T) {
-	orientation := navigation.South{}
-	expected := navigation.East{}
+	orientation := South{}
+	expected := &East{}
 	actual := orientation.Left()
 
 	if actual != expected {
@@ -56,8 +55,8 @@ func TestSouthLeft(t *testing.T) {
 }
 
 func TestSouthRight(t *testing.T) {
-	orientation := navigation.South{}
-	expected := navigation.West{}
+	orientation := South{}
+	expected := &West{}
 	actual := orientation.Right()
 
 	if actual != expected {
@@ -66,8 +65,8 @@ func TestSouthRight(t *testing.T) {
 }
 
 func TestWestLeft(t *testing.T) {
-	orientation := navigation.West{}
-	expected := navigation.South{}
+	orientation := West{}
+	expected := &South{}
 	actual := orientation.Left()
 
 	if actual != expected {
@@ -76,8 +75,8 @@ func TestWestLeft(t *testing.T) {
 }
 
 func TestWestRight(t *testing.T) {
-	orientation := navigation.West{}
-	expected := navigation.North{}
+	orientation := West{}
+	expected := &North{}
 	actual := orientation.Right()
 
 	if actual != expected {

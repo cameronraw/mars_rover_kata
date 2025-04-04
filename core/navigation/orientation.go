@@ -1,11 +1,30 @@
 package navigation
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Orientation interface {
 	Left() Orientation
 	Right() Orientation
+	MoveForward(coordinates *Coordinates)
 	fmt.Stringer
+}
+
+func (o *North) MoveForward(coordinates *Coordinates) {
+	coordinates.Y++
+}
+
+func (o *West) MoveForward(coordinates *Coordinates) {
+	coordinates.X--
+}
+
+func (o *East) MoveForward(coordinates *Coordinates) {
+	coordinates.X++
+}
+
+func (o *South) MoveForward(coordinates *Coordinates) {
+	coordinates.Y--
 }
 
 type North struct{}
@@ -14,11 +33,11 @@ type East struct{}
 type South struct{}
 
 func (n North) Left() Orientation {
-	return West{}
+	return &West{}
 }
 
 func (n North) Right() Orientation {
-	return East{}
+	return &East{}
 }
 
 func (n North) String() string {
@@ -26,11 +45,11 @@ func (n North) String() string {
 }
 
 func (w West) Left() Orientation {
-	return South{}
+	return &South{}
 }
 
 func (w West) Right() Orientation {
-	return North{}
+	return &North{}
 }
 
 func (w West) String() string {
@@ -38,11 +57,11 @@ func (w West) String() string {
 }
 
 func (e East) Left() Orientation {
-	return North{}
+	return &North{}
 }
 
 func (e East) Right() Orientation {
-	return South{}
+	return &South{}
 }
 
 func (e East) String() string {
@@ -50,11 +69,11 @@ func (e East) String() string {
 }
 
 func (s South) Left() Orientation {
-	return East{}
+	return &East{}
 }
 
 func (s South) Right() Orientation {
-	return West{}
+	return &West{}
 }
 
 func (s South) String() string {

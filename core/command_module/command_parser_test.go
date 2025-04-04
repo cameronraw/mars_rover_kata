@@ -24,6 +24,10 @@ func (m *MockRover) TurnRight() {
 	m.CalledFuncs = append(m.CalledFuncs, "TurnRight")
 }
 
+func (m *MockRover) MoveForward() {
+	m.CalledFuncs = append(m.CalledFuncs, "MoveForward")
+}
+
 func TestCommandParserShould(t *testing.T) {
 
 	t.Run("return LeftCommand when parsing 'L'", func(t *testing.T) {
