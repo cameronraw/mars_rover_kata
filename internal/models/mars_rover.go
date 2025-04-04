@@ -1,20 +1,48 @@
 package models
 
-type MarsRover struct{}
+import (
+	"errors"
+	"fmt"
+)
 
-func (m *MarsRover) Execute(s string) string {
-	if s == "L" {
-		return "0:0:W"
-	}
-	if s == "LL" {
-		return "0:0:S"
-	}
-	if s == "LLL" {
-		return "0:0:E"
-	}
-	return "0:0:N"
+type MarsRover struct {
+	orientation rune
 }
 
 func NewMarsRover() *MarsRover {
-	return &MarsRover{}
+	return &MarsRover{
+		orientation: 'N',
+	}
+}
+
+func (m *MarsRover) Execute(commandString string) (string, error) {
+	command_runes := []rune(commandString)
+	for i := range command_runes {
+		if command_runes[i] == 'L' {
+			err := m.turnLeft()
+			if err != nil {
+				return "", err
+			}
+		}
+	}
+	return fmt.Sprintf("0:0:%s", string(m.orientation)), nil
+}
+
+func (m *MarsRover) turnLeft() error {
+	switch m.orientation {
+	case 'N':
+		m.orientation = 'W'
+		return nil
+	case 'W':
+		m.orientation = 'S'
+		return nil
+	case 'S':
+		m.orientation = 'E'
+		return nil
+	case 'E':
+		m.orientation = 'N'
+		return nil
+	default:
+		return errors.New("invalid orientation")
+	}
 }
