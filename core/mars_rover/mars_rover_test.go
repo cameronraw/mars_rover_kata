@@ -19,6 +19,7 @@ func TestMarsRoverShould(t *testing.T) {
 		{"return 0:0:S position after receiving 'RR'", "RR", "0:0:S"},
 		{"return 0:0:W position after receiving 'RRR'", "RRR", "0:0:W"},
 		{"return 0:1:N position after receiving 'M'", "M", "0:1:N"},
+		{"return 0:0:N position after receiving 'RM'", "RM", "1:0:E"},
 	}
 
 	for _, tc := range testCases {
