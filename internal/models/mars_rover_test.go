@@ -5,19 +5,27 @@ import (
 	"testing"
 )
 
-func TestMarsRover(t *testing.T) {
-	t.Run("should return it's position", func(t *testing.T) {
-		// Arrange
-		rover := models.NewMarsRover(0, 0, "N")
+func TestMarsRoverShould(t *testing.T) {
+	t.Run("return it's position", func(t *testing.T) {
+		rover := models.NewMarsRover()
 
-		// Act
 		position := rover.Execute("")
 
-		// Assert
-		if position != "0:0:N" {
-			t.Errorf("expected position to be '0:0:N', got '%s'", position)
+		expected := "0:0:N"
+
+		if position != expected {
+			t.Errorf("expected position to be '%s', got '%s'", expected, position)
 		}
-
 	})
+	t.Run("return 0:0:W position after receiving 'L'", func(t *testing.T) {
+		rover := models.NewMarsRover()
 
+		position := rover.Execute("L")
+
+		expected := "0:0:W"
+
+		if position != expected {
+			t.Errorf("expected position to be '%s', got '%s'", expected, position)
+		}
+	})
 }
