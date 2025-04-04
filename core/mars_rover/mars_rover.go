@@ -1,4 +1,4 @@
-package models
+package mars_rover
 
 import (
 	"errors"
