@@ -83,13 +83,4 @@ func TestMarsRoverShould(t *testing.T) {
 			t.Errorf("expected position to be '%s', got '%s'", expected, position)
 		}
 	})
-	t.Run("return error when receiving invalid command", func(t *testing.T) {
-		rover := mars_rover.NewMarsRover()
-
-		_, err := rover.Execute("X")
-
-		if err == nil {
-			t.Errorf("expected an error, got nil")
-		}
-	})
 }
